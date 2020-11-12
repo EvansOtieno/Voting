@@ -1,0 +1,51 @@
+<div fxLayoutAlign="center"  class="main">
+    <mat-card fxFlex="50">
+        <mat-toolbar style="background-color: green;justify-content: center">STUDENT REGISTRATION</mat-toolbar>
+        <form #f="ngForm" (ngSubmit)="saveStudent()" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+        <div class="example-container">
+            <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
+          <mat-form-field appearance="fill" class="width-100 ml-1" >
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname"/>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-100" >
+            <mat-label>Surname</mat-label>
+            <input matInput type="text" name="lastname" [(ngModel)]="student.lastname"/>
+          </mat-form-field></div>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Email address</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" type="email" name="email" [(ngModel)]="student.email"/>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Enter password</mat-label>
+            <input name="password" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <br><br>
+          <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
+          <mat-form-field appearance="fill" class="width-100 ml-1">
+            <mat-label>Faculty</mat-label>
+            <mat-select [(ngModel)]="student.faculty" name="faculty">
+              <mat-option *ngFor="let faculty of Faculties" [value]="faculty" type="text" >{{faculty}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Residence</mat-label>
+            <mat-select [(ngModel)]="student.residence" name="residence">
+              <mat-option type="text" *ngFor="let residence of Halls" [value]="residence">{{residence}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field></div>
+          <button mat-raised-button class="width-100 ml-1" style="background-color: green;padding:0" type="submit">Register</button>
+        </div>
+    </form>
+</mat-card>
+
+</div>
