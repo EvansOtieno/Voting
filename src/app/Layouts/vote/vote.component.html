@@ -1,0 +1,10 @@
+<div>
+    <h2>VOTE FOR YOUR TEAM</h2>
+    <div *ngFor="let contestant of contestants">
+        <mat-card fxLayout="row">
+            <img [src]="contestant.base64image" [alt]="contestant.name">
+            <p>{{contestant.name}}</p>
+            <mat-radio-button [value]="contestant.id"></mat-radio-button>
+        </mat-card> 
+    </div>
+  </div>

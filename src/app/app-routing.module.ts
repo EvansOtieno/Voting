@@ -6,9 +6,10 @@ import { ContRegComponent } from './Layouts/cont-reg/cont-reg.component';
 import { HomeComponent } from './Layouts/home/home.component';
 import { LoginComponent } from './Layouts/login/login.component';
 import { RegisterComponent } from './Layouts/register/register.component';
+import { VoteComponent } from './Layouts/vote/vote.component';
 
 const routes: Routes = [
-  {path : 'home', component : HomeComponent},
+  {path : 'home', component : VoteComponent},
   {path : 'login', component : LoginComponent},
   {path : 'register', component : RegisterComponent},
   {path : 'about', component : AboutComponent},

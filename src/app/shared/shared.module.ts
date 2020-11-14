@@ -43,8 +43,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { AboutComponent } from '../Layouts/about/about.component';
 import { ContRegComponent } from '../Layouts/cont-reg/cont-reg.component';
 import { HttpClientModule } from "@angular/common/http";
+import { VoteComponent } from '../Layouts/vote/vote.component';
 @NgModule({
-  declarations: [ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -86,6 +87,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule
   ],
   exports: [
+    VoteComponent,
     AboutComponent,
     HeaderComponent,
     FooterComponent,

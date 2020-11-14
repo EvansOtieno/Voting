@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   saveStudent(){
-    console.log();
     this.studentservice.saveStudent(this.student).subscribe(
       data =>{
         console.log('response',data);
