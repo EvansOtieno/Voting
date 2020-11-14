@@ -20,7 +20,6 @@ export class VoteComponent implements OnInit {
     this.contestantservice.getcontestants().subscribe(
       data => {
         this.contestants = data;
-        
         this.contestants.forEach(value => {
           this.studentservice.getStudent(value.id).subscribe(
             data => {
