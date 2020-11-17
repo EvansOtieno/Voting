@@ -1,10 +1,77 @@
-<div>
-    <h2>VOTE FOR YOUR TEAM</h2>
-    <div *ngFor="let contestant of contestants">
-        <mat-card fxLayout="row">
-            <img [src]="contestant.base64image" [alt]="contestant.name">
-            <p>{{contestant.name}}</p>
-            <mat-radio-button [value]="contestant.id"></mat-radio-button>
-        </mat-card> 
+<div >
+    <h2 style="text-align: center;font-family: 'Times New Roman', Times, serif;">VOTE FOR YOUR TEAM</h2>
+    <mat-toolbar>Chair</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let chair of chairs"  >
+        <mat-radio-group [(ngModel)]="chai">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="chair.base64image" [alt]="chair.name">
+            <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
+            
+            <mat-radio-button  style="margin-top: 40px;padding: 5px;" name="chairs" [value]="chair"></mat-radio-button>
+        
+        </mat-card> </mat-radio-group>
     </div>
-  </div>
+    </div> 
+    <mat-toolbar>Vice Chair</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let vchair of vchairs"  >
+        <mat-radio-group [(ngModel)]="vchai">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="vchair.base64image" [alt]="vchair.name">
+            <p style="margin-top: 40px;padding: 5px">{{vchair.name}}</p>
+            <mat-radio-button  style="margin-top: 40px;padding: 5px;" name="vchairs" [value]="vchair"></mat-radio-button>
+            
+        </mat-card> </mat-radio-group>
+    </div>
+    </div> 
+    <mat-toolbar>SecGen</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let secgen of secgens"  >
+        <mat-radio-group [(ngModel)]="secge">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="secgen.base64image" [alt]="secgen.name">
+            <p style="margin-top: 40px;padding: 5px">{{secgen.name}}</p>
+            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="secgens" [value]="secgen"></mat-radio-button>
+            
+        </mat-card> </mat-radio-group>
+    </div>
+    </div> 
+    <mat-toolbar>Academics</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let academic of academics"  >
+        <mat-radio-group [(ngModel)]="academi">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="academic.base64image" [alt]="academic.name">
+            <p style="margin-top: 40px;padding: 5px">{{academic.name}}</p>
+            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="academics" [value]="academic"></mat-radio-button>
+            
+        </mat-card> </mat-radio-group>
+    </div>
+    </div> 
+    <mat-toolbar>Faculty</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let faculty of faculties"  >
+        <mat-radio-group [(ngModel)]="facult">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="faculty.base64image" [alt]="faculty.name">
+            <p style="margin-top: 40px;padding: 5px">{{faculty.name}}</p>
+            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="facultys" [value]="chair"></mat-radio-button>
+            
+        </mat-card> </mat-radio-group>
+    </div>
+    </div> 
+    <mat-toolbar>Halls</mat-toolbar>
+    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div class="cards" *ngFor="let hall of halls"  >
+        <mat-radio-group [(ngModel)]="hal">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+            <img [src]="hall.base64image" [alt]="hall.name">
+            <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
+            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="halls" [value]="hall"></mat-radio-button>
+        </mat-card> </mat-radio-group>
+    </div>
+    </div> 
+    <button (click)="confirm()" mat-raised-button class="width-100 ml-1" style="background-color: green;margin-top:10px"
+    type="submit">Submit</button> 
+</div>

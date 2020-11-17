@@ -44,8 +44,10 @@ import { AboutComponent } from '../Layouts/about/about.component';
 import { ContRegComponent } from '../Layouts/cont-reg/cont-reg.component';
 import { HttpClientModule } from "@angular/common/http";
 import { VoteComponent } from '../Layouts/vote/vote.component';
+import { CastComponent } from '../Layouts/cast/cast.component';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
-  declarations: [VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [CastComponent,VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -95,7 +97,11 @@ import { VoteComponent } from '../Layouts/vote/vote.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ContRegComponent
+    ContRegComponent,
+    CastComponent
+  ],
+  providers:[
+    CookieService
   ]
 })
 export class SharedModule {

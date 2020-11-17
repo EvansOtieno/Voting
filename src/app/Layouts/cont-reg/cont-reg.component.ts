@@ -14,7 +14,7 @@ export class ContRegComponent implements OnInit {
   public photo:any= File;
   student: Student = new Student();
   contestant: Contestant = new Contestant();
-  Positions: any = ['Chair', 'V.Chair', 'SecGen', 'Academics', 'Halls', 'Faculty'];
+  Positions: any = ['Chair', 'V.Chair', 'SecGen', 'Academics'];
   constructor(private studentservice: StudentService, private contestantservice: ContestantService, private router: Router) { }
 
   ngOnInit(): void {

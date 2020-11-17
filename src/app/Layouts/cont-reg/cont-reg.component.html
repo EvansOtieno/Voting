@@ -25,7 +25,10 @@
               <mat-radio-group [(ngModel)]="contestant.position" name="position">
                 <mat-radio-button style="padding: 5px;" *ngFor="let position of Positions" [value]="position"
                   class="example-margin">{{position}}</mat-radio-button>
-
+                  <mat-radio-button style="padding: 5px;"  [value]="student.faculty"
+                  class="example-margin">{{student.faculty}}</mat-radio-button>
+                  <mat-radio-button style="padding: 5px;" [value]="student.residence"
+                  class="example-margin">{{student.residence}}</mat-radio-button>
               </mat-radio-group>
             </section>
           </div>
