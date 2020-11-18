@@ -1,0 +1,15 @@
+
+<div *ngFor="let cont of contestants">
+<div *ngIf="cont.position==data.editposition">
+  <div class="cards"  >
+    <mat-radio-group [(ngModel)]="contestant">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+        <img [src]="cont.base64image" [alt]="cont.name">
+        <p style="margin-top: 40px;padding: 5px">{{cont.name}}</p>
+        
+        <mat-radio-button  style="margin-top: 40px;padding: 5px;" name="cont" [value]="cont"></mat-radio-button>
+    </mat-card> </mat-radio-group>
+</div>
+<button mat-button [mat-dialog-close]="cont" cdkFocusInitial>Ok</button>
+</div>
+</div>

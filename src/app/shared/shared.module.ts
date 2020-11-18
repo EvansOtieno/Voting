@@ -46,8 +46,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { VoteComponent } from '../Layouts/vote/vote.component';
 import { CastComponent } from '../Layouts/cast/cast.component';
 import { CookieService } from 'ngx-cookie-service';
+import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-elements.component';
 @NgModule({
-  declarations: [CastComponent,VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [DialogElementsComponent,CastComponent,VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -89,6 +90,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule
   ],
   exports: [
+    DialogElementsComponent,
     VoteComponent,
     AboutComponent,
     HeaderComponent,

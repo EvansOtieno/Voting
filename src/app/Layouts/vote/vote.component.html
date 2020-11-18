@@ -3,7 +3,7 @@
     <mat-toolbar>Chair</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let chair of chairs"  >
-        <mat-radio-group [(ngModel)]="chai">
+        <mat-radio-group [(ngModel)]="contestantss[0]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="chair.base64image" [alt]="chair.name">
             <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
@@ -16,7 +16,7 @@
     <mat-toolbar>Vice Chair</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let vchair of vchairs"  >
-        <mat-radio-group [(ngModel)]="vchai">
+        <mat-radio-group [(ngModel)]="contestantss[1]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="vchair.base64image" [alt]="vchair.name">
             <p style="margin-top: 40px;padding: 5px">{{vchair.name}}</p>
@@ -28,7 +28,7 @@
     <mat-toolbar>SecGen</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let secgen of secgens"  >
-        <mat-radio-group [(ngModel)]="secge">
+        <mat-radio-group [(ngModel)]="contestantss[2]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="secgen.base64image" [alt]="secgen.name">
             <p style="margin-top: 40px;padding: 5px">{{secgen.name}}</p>
@@ -40,7 +40,7 @@
     <mat-toolbar>Academics</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let academic of academics"  >
-        <mat-radio-group [(ngModel)]="academi">
+        <mat-radio-group [(ngModel)]="contestantss[3]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="academic.base64image" [alt]="academic.name">
             <p style="margin-top: 40px;padding: 5px">{{academic.name}}</p>
@@ -52,7 +52,7 @@
     <mat-toolbar>Faculty</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let faculty of faculties"  >
-        <mat-radio-group [(ngModel)]="facult">
+        <mat-radio-group [(ngModel)]="contestantss[4]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="faculty.base64image" [alt]="faculty.name">
             <p style="margin-top: 40px;padding: 5px">{{faculty.name}}</p>
@@ -64,7 +64,7 @@
     <mat-toolbar>Halls</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let hall of halls"  >
-        <mat-radio-group [(ngModel)]="hal">
+        <mat-radio-group [(ngModel)]="contestantss[5]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
             <img [src]="hall.base64image" [alt]="hall.name">
             <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
