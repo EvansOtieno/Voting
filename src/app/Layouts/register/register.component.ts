@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Student } from 'src/app/Models/student';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { StudentService } from 'src/app/Services/student.service';
 
 @Component({
@@ -14,15 +15,35 @@ export class RegisterComponent implements OnInit {
   Halls: any = ['BuruBuru', 'CBD', 'Tatton', 'Non-Resident'];
   Faculties: any = ['Science', 'Education', 'Health Science', 'Engineering'];
   hide = true;
-  constructor(private studentservice: StudentService, private router:Router) { }
-  
+  errormsg='';
+  issuccessfull=false;
+  issignupfailed=false;
+  constructor(private authservice:AuthenticationService,private studentservice: StudentService, private router:Router) { }
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  nameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  lnameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.minLength(5),
+  ]);
   ngOnInit(): void {
   }
   saveStudent(){
-    this.studentservice.saveStudent(this.student).subscribe(
+    this.authservice.register(this.student).subscribe(
       data =>{
-        console.log('response',data);
+        this.issuccessfull=true;
+        this.issignupfailed=false;
         this.router.navigateByUrl("/home");
+      },
+      err =>{
+        this.errormsg=err.error.message;
+        this.issignupfailed=false;
       }
     )
   }

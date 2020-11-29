@@ -1,0 +1,97 @@
+<div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div *ngIf="!isvisible" fxLayout="row" fxLayoutAlign="center center">
+    <div class="time">
+        <button mat-fab style="background-color: green;" >
+          <p>{{days}}</p>
+        </button>
+      </div>
+      <div class="time">
+        <button mat-fab style="background-color: green;" >
+          <p>{{hours}}</p>
+        </button>
+      </div>
+      <div class="time">
+        <button mat-fab style="background-color: green;" >
+          <p>{{minutes}}</p>
+        </button>
+      </div>
+      <div class="time">
+        <button mat-fab style="background-color: green;" >
+          <p>{{seconds}}</p>
+        </button>
+      </div>
+</div>
+<div *ngIf="isvisible">
+  <div>
+  
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Votes</th>
+        </tr>
+      </thead>
+      <tbody >  
+        <tr class="post">
+          <td></td>
+          <td></td>
+          <td><b>CHAIR</b></td>
+          <td></td>
+        </tr>
+         
+        <tr *ngFor="let cont of chairs;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+          <td>{{cont.name}}</td>
+          <td>{{cont.votes}}</td>
+        </tr>
+        <tr class="post">
+          <td></td>
+          <td></td>
+          <td><b>V.CHAIR</b></td>
+          <td></td>
+        </tr>
+         
+        <tr *ngFor="let cont of vchairs;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+          <td>{{cont.name}}</td>
+          <td>{{cont.votes}}</td>
+        </tr>
+        <tr class="post">
+          <td></td>
+          <td></td>
+          <td><b>SECGEN</b></td>
+          <td></td>
+        </tr>
+         
+        <tr *ngFor="let cont of secgens;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+          <td>{{cont.name}}</td>
+          <td>{{cont.votes}}</td>
+        </tr>
+        <tr class="post">
+          <td></td>
+          <td></td>
+          <td><b>ACADEMICS</b></td>
+          <td></td>
+        </tr>
+         
+        <tr *ngFor="let cont of academics;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+          <td>{{cont.name}}</td>
+          <td>{{cont.votes}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+      
+</div>
+</div>
+
+</div>

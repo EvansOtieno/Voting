@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Contestant } from 'src/app/Models/contestant';
 import { Student } from 'src/app/Models/student';
+import { User } from 'src/app/Models/user';
 import { ContestantService } from 'src/app/Services/contestant.service';
 import { StudentService } from 'src/app/Services/student.service';
+import { TokenStorageService } from 'src/app/Services/token-storage.service';
 
 @Component({
   selector: 'app-vote',
@@ -31,33 +33,34 @@ export class VoteComponent implements OnInit {
   facult: Contestant;
   private student: Student = new Student();
   myStorage = window.localStorage;
-  constructor(private cookie: CookieService, private studentservice: StudentService, private contestantservice: ContestantService, private router: Router) { }
+  isloggedin=false;
+  user:User=new User();
+  constructor(private tokenstorage:TokenStorageService,private cookie: CookieService, private studentservice: StudentService, private contestantservice: ContestantService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isloggedin=!!this.tokenstorage.getToken();
+    
+    if(this.isloggedin){
+      this.user=this.tokenstorage.getUser();
+      console.log(this.user);
+    }
+
     this.contestantservice.getcontestants().subscribe(
       data => {
         this.contestants= data;
-        this.contestants.forEach(value => {
-          this.studentservice.getStudent(value.id).subscribe(
-            data => {
-              this.student = data;
-              value.name = this.student.firstname + ' ' + this.student.lastname;
-              this.myStorage.setItem("cookie", JSON.stringify(this.contestants));
-            }
-          )
-        });
         this.chairs = this.contestants.filter(x => x.position == 'Chair');
         this.vchairs = this.contestants.filter(x => x.position == 'V.Chair');
         this.secgens = this.contestants.filter(x => x.position == 'SecGen');
         this.academics = this.contestants.filter(x => x.position == 'Academics');
-        this.halls = this.contestants.filter(x => x.position == 'Halls');
-        this.faculties = this.contestants.filter(x => x.position == 'Faculty');
+        this.halls = this.contestants.filter(x => x.position.endsWith("Halls"));
+        this.faculties = this.contestants.filter(x => x.position.endsWith("Faculty"));
+        this.myStorage.setItem("cookie", JSON.stringify(this.contestants));
       }
     ); 
   }
   confirm() {
-    
     this.myStorage.setItem("cookie1", JSON.stringify(this.contestantss));
+
     this.router.navigateByUrl("/confirm");
   }
 }

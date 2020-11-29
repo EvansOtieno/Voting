@@ -49,23 +49,23 @@
         </mat-card> </mat-radio-group>
     </div>
     </div> 
-    <mat-toolbar>Faculty</mat-toolbar>
+    <mat-toolbar>{{user.faculty}}</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let faculty of faculties"  >
         <mat-radio-group [(ngModel)]="contestantss[4]">
-        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" *ngIf="faculty.position==user.faculty" >
             <img [src]="faculty.base64image" [alt]="faculty.name">
             <p style="margin-top: 40px;padding: 5px">{{faculty.name}}</p>
-            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="facultys" [value]="chair"></mat-radio-button>
+            <mat-radio-button style="margin-top: 40px;padding: 5px;" name="facultys" [value]="faculty"></mat-radio-button>
             
         </mat-card> </mat-radio-group>
     </div>
     </div> 
-    <mat-toolbar>Halls</mat-toolbar>
+    <mat-toolbar>{{user.residence}}</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let hall of halls"  >
         <mat-radio-group [(ngModel)]="contestantss[5]">
-        <mat-card fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" *ngIf="hall.position==user.residence" >
             <img [src]="hall.base64image" [alt]="hall.name">
             <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
             <mat-radio-button style="margin-top: 40px;padding: 5px;" name="halls" [value]="hall"></mat-radio-button>

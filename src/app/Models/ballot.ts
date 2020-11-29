@@ -1,9 +1,11 @@
+import { Contestant } from './contestant';
+
 export class Ballot {
-    chair: String;
-    vchair: String;
-    entertainmentsports: String;
-    secgen: String;
-    academics: String;
-    halls: String;
-    faculty: String;
+    chair: Contestant;
+    vchair: Contestant;
+    entertainmentsports: Contestant;
+    secgen: Contestant;
+    academics: Contestant;
+    halls: Contestant;
+    faculty: Contestant;
 }

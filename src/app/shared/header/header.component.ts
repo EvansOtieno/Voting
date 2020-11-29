@@ -1,8 +1,7 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
-import { SharedModule } from "../shared.module";
+import { User } from 'src/app/Models/user';
+import { TokenStorageService } from 'src/app/Services/token-storage.service';
+
 
 @Component({
   selector: 'app-header',
@@ -10,18 +9,18 @@ import { SharedModule } from "../shared.module";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  xsm:Observable<boolean>;
-  sm:Observable<boolean>;
-  md:Observable<boolean>;
-  l:Observable<boolean>;
-  constructor(
-    private breakpointobserver :BreakpointObserver
-  ){}
+
+  isloggedin=false;
+  role='';
+  user:User=new User;
+  username='';
+
+  constructor(public tokenstorage:TokenStorageService){}
   ngOnInit() {
-    this.xsm= this.breakpointobserver.observe(['(max-width: 575.98px)']).pipe(map(({matches})=>matches));
-   this.sm= this.breakpointobserver.observe(['(max-width: 767.98px)']).pipe(map(({matches})=>matches));
-   this.md= this.breakpointobserver.observe(['(max-width: 991.98px)']).pipe(map(({matches})=>matches));
-   this.l= this.breakpointobserver.observe(['(max-width: 1199.98px)']).pipe(map(({matches})=>matches));
   }
 
+  logout():void{
+    this.tokenstorage.signout();
+    window.location.reload();
+  }
 }

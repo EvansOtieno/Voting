@@ -1,0 +1,59 @@
+<div fxFill class="bg">
+
+<div div fxLayout="row" fxLayoutAlign="space-around center" >
+    <mat-card class="dashboard-card">
+        <mat-card-header class="card-header">
+            <mat-card-title>
+                <h1 class="value-text" >Voters 10</h1>
+             
+            </mat-card-title>
+          
+        </mat-card-header>
+       
+    </mat-card>
+    <mat-card class="dashboard-card">
+        <mat-card-header class="card-header">
+            <mat-card-title>
+                <h1 class="value-text" >Voters 10</h1>
+             
+            </mat-card-title>
+          
+        </mat-card-header>
+       
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+        <mat-card-header class="card-header">
+            <mat-card-title>
+                <h1 class="value-text" >Voters 10</h1>
+             
+            </mat-card-title>
+          
+        </mat-card-header>
+       
+    </mat-card>
+
+</div>
+<mat-divider></mat-divider>
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" >
+<div style="display: block;width: 50%;">
+    <canvas baseChart 
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+  <div style="display: block; width: 50%;">
+    <canvas baseChart
+      [data]="pieChartData"
+      [labels]="pieChartLabels"
+      [chartType]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div></div>
+</div>

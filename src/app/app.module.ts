@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
+import { ChartsModule } from 'ng2-charts';
+import { AuthGuard } from './Services/auth.guard';
 
 
 @NgModule({
@@ -13,6 +15,7 @@ import { HttpClientModule } from "@angular/common/http";
     AppComponent,
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -20,7 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

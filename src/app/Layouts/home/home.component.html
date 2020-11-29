@@ -1,1 +1,40 @@
-<p>Home Works</p>
+
+  <div class="header">
+    <img class="logo" SRC="assets/logo.png">
+    <div class="mytoolbar">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span><mat-icon>how_to_vote</mat-icon>SUEU VOTING</span>
+          <span class="menu-spacer"></span>
+          <div fxShow="true" fxHide.lt-md>
+            <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+            <a mat-button routerLink="home">Home</a>
+            <a mat-button routerLink="about">About</a>
+            <a mat-button routerLink="register">Register</a>
+            <a mat-button routerLink="login">Login</a>
+            <a mat-button routerLink="regcont">RegCont</a>
+          
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    
+      <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+          <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+            <a mat-button routerLink="home">Home</a>
+            <a mat-button routerLink="about">About</a>
+            <a mat-button routerLink="register">Register</a>
+            <a mat-button routerLink="login">Login</a>
+            <a mat-button routerLink="regcont">RegCont</a>
+            
+          </mat-nav-list>
+        </mat-sidenav>
+      </mat-sidenav-container>
+    </div>
+    
+    </div>
+      

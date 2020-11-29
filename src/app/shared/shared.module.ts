@@ -42,14 +42,45 @@ import { RegisterComponent } from '../Layouts/register/register.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AboutComponent } from '../Layouts/about/about.component';
 import { ContRegComponent } from '../Layouts/cont-reg/cont-reg.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { VoteComponent } from '../Layouts/vote/vote.component';
 import { CastComponent } from '../Layouts/cast/cast.component';
 import { CookieService } from 'ngx-cookie-service';
 import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-elements.component';
+import { ResultsComponent } from '../Layouts/results/results.component';
+import { VoteTimeComponent } from '../Layouts/vote-time/vote-time.component';
+import { DashboardComponent } from '../Layouts/dashboard/dashboard.component';
+import { PasswordrstComponent } from '../Layouts/passwordrst/passwordrst.component';
+import { AccountComponent } from '../Layouts/account/account.component';
+import { ChartsModule } from 'ng2-charts';
+import { authInterceptorProviders } from "./auth-interceptor";
+import { ProfileComponent } from '../Layouts/profile/profile.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 @NgModule({
-  declarations: [DialogElementsComponent,CastComponent,VoteComponent,ContRegComponent,AboutComponent, HomeComponent, LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [
+    ProfileComponent,
+    VoteTimeComponent,
+    DashboardComponent,
+    PasswordrstComponent,
+    AccountComponent,
+    ResultsComponent,
+    DialogElementsComponent,
+    CastComponent,
+    VoteComponent,
+    ContRegComponent,
+    AboutComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent
+  ],
   imports: [
+    NgxMatTimepickerModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    ChartsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -90,6 +121,12 @@ import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-eleme
     HttpClientModule
   ],
   exports: [
+    ProfileComponent,
+    VoteTimeComponent,
+    DashboardComponent,
+    PasswordrstComponent,
+    AccountComponent,
+    ResultsComponent,
     DialogElementsComponent,
     VoteComponent,
     AboutComponent,
@@ -102,8 +139,10 @@ import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-eleme
     ContRegComponent,
     CastComponent
   ],
-  providers:[
-    CookieService
+  providers: [
+    NgxMatDatetimePickerModule,
+    CookieService,
+    authInterceptorProviders,
   ]
 })
 export class SharedModule {

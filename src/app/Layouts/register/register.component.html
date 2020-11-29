@@ -6,22 +6,38 @@
             <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
           <mat-form-field appearance="fill" class="width-100 ml-1" >
             <mat-label>First Name</mat-label>
-            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname"/>
+            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" [formControl]="lnameFormControl"/>
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Name Required
+            </mat-error>
           </mat-form-field>
       
           <mat-form-field appearance="fill" class="width-100" >
             <mat-label>Surname</mat-label>
-            <input matInput type="text" name="lastname" [(ngModel)]="student.lastname"/>
+            <input matInput type="text" name="lastname" [(ngModel)]="student.lastname" [formControl]="nameFormControl"/>
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Name Required
+            </mat-error>
           </mat-form-field></div>
           <br>
-          <mat-form-field appearance="fill" class="width-100">
-            <mat-label>Email address</mat-label>
-            <input matInput placeholder="Ex. pat@example.com" type="email" name="email" [(ngModel)]="student.email"/>
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com"
+              [(ngModel)]="student.email" class="width-100"/>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Enter password</mat-label>
-            <input name="password" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
+            <input name="password"  [formControl]="passwordFormControl" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
+            <mat-error *ngIf="passwordFormControl.errors?.minlength">
+              Atleast 5 chatacters
+             </mat-error>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -31,7 +47,7 @@
           <mat-form-field appearance="fill" class="width-100 ml-1">
             <mat-label>Faculty</mat-label>
             <mat-select [(ngModel)]="student.faculty" name="faculty">
-              <mat-option *ngFor="let faculty of Faculties" [value]="faculty" type="text" >{{faculty}}
+              <mat-option *ngFor="let faculty of Faculties" [value]="faculty + ' Faculty' " type="text" >{{faculty}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -39,7 +55,7 @@
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Residence</mat-label>
             <mat-select [(ngModel)]="student.residence" name="residence">
-              <mat-option type="text" *ngFor="let residence of Halls" [value]="residence">{{residence}}
+              <mat-option type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">{{residence}}
               </mat-option>
             </mat-select>
           </mat-form-field></div>
