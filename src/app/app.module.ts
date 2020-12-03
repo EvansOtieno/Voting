@@ -13,6 +13,7 @@ import { AuthGuard } from './Services/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
+   
   ],
   imports: [
     ChartsModule,

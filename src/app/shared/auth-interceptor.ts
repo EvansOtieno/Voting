@@ -22,9 +22,13 @@ export class AuthInterceptor implements HttpInterceptor {
       
     }
   handleAuthError(err: HttpErrorResponse): Observable<any>  {
-    this.router.navigateByUrl("/login");
-    return throwError(err);
-  
+    if(err.status==403){
+      this.router.navigateByUrl("/login");
+       return throwError(err);
+    }else{
+      return throwError(err.error.message);
+    }
+
   }
 }
     export const authInterceptorProviders=[

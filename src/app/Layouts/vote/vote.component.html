@@ -1,5 +1,6 @@
-<div >
+<div class="body">
     <h2 style="text-align: center;font-family: 'Times New Roman', Times, serif;">VOTE FOR YOUR TEAM</h2>
+    <h3 *ngIf="errormsg" style="color: red;text-align: center;">Error Loading Data!!</h3>
     <mat-toolbar>Chair</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let chair of chairs"  >
@@ -49,7 +50,7 @@
         </mat-card> </mat-radio-group>
     </div>
     </div> 
-    <mat-toolbar>{{user.faculty}}</mat-toolbar>
+    <mat-toolbar *ngIf="isloggedin">{{user.faculty}}</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let faculty of faculties"  >
         <mat-radio-group [(ngModel)]="contestantss[4]">
@@ -61,7 +62,7 @@
         </mat-card> </mat-radio-group>
     </div>
     </div> 
-    <mat-toolbar>{{user.residence}}</mat-toolbar>
+    <mat-toolbar *ngIf="isloggedin">{{user.residence}}</mat-toolbar>
     <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let hall of halls"  >
         <mat-radio-group [(ngModel)]="contestantss[5]">
@@ -72,6 +73,6 @@
         </mat-card> </mat-radio-group>
     </div>
     </div> 
-    <button (click)="confirm()" mat-raised-button class="width-100 ml-1" style="background-color: green;margin-top:10px"
+    <button (click)="confirm()" mat-raised-button class="width-100 ml-1" style="background-color: green;margin-top:10px;border: 1px solid blue;"
     type="submit">Submit</button> 
 </div>

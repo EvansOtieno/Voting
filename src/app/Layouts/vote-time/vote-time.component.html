@@ -1,16 +1,16 @@
-<div>
-<p>dfds</p>
-<p>dfds</p>
-<p>dfds</p>
-<p>dfds</p>
-<p>dfds</p>
-<mat-form-field>
-   <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
-     [min]="minDate" [max]="maxDate" [disabled]="disabled">
-   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-   <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
-     [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
-      [enableMeridian]="enableMeridian">
-   </ngx-mat-datetime-picker>
- </mat-form-field>
+<div fxLayoutAlign="center" class="main">
+ 
+  <mat-card fxFlex="30">
+    <mat-toolbar >Set Voting Time</mat-toolbar>
+    <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" >
+      <label for="st">Choose Voting Start Time:</label>
+      <input type="datetime-local" id="st" required  [formControl]="startFormControl"  [(ngModel)]="starttime" min={{mindate}}/>
+      <br>
+      <label for="sp">Choose Voting Stop Time:</label>
+      <input type="datetime-local" id="sp" required [formControl]="stopFormControl"  [(ngModel)]="stoptime" min={{mindate}}/>
+      <br>
+      <button mat-raised-button style="background-color: green;padding:0" type="submit">Set</button>
+    </form>
+  </mat-card>
+
 </div>

@@ -16,6 +16,7 @@ import { TokenStorageService } from 'src/app/Services/token-storage.service';
   styleUrls: ['./vote.component.css']
 })
 export class VoteComponent implements OnInit {
+  errormsg=false;
   contestants: Contestant[] = [];
   contestantss: Contestant[] = [];
   contestant: Contestant;
@@ -42,7 +43,6 @@ export class VoteComponent implements OnInit {
     
     if(this.isloggedin){
       this.user=this.tokenstorage.getUser();
-      console.log(this.user);
     }
 
     this.contestantservice.getcontestants().subscribe(
@@ -55,6 +55,9 @@ export class VoteComponent implements OnInit {
         this.halls = this.contestants.filter(x => x.position.endsWith("Halls"));
         this.faculties = this.contestants.filter(x => x.position.endsWith("Faculty"));
         this.myStorage.setItem("cookie", JSON.stringify(this.contestants));
+      },
+      err =>{
+        this.errormsg=true;
       }
     ); 
   }

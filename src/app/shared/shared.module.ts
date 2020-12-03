@@ -41,7 +41,7 @@ import { LoginComponent } from '../Layouts/login/login.component';
 import { RegisterComponent } from '../Layouts/register/register.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AboutComponent } from '../Layouts/about/about.component';
-import { ContRegComponent } from '../Layouts/cont-reg/cont-reg.component';
+import { ContRegComponent } from '../Layouts/Admin/cont-reg/cont-reg.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { VoteComponent } from '../Layouts/vote/vote.component';
 import { CastComponent } from '../Layouts/cast/cast.component';
@@ -49,15 +49,28 @@ import { CookieService } from 'ngx-cookie-service';
 import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-elements.component';
 import { ResultsComponent } from '../Layouts/results/results.component';
 import { VoteTimeComponent } from '../Layouts/vote-time/vote-time.component';
-import { DashboardComponent } from '../Layouts/dashboard/dashboard.component';
-import { PasswordrstComponent } from '../Layouts/passwordrst/passwordrst.component';
+import { DashboardComponent } from '../Layouts/Admin/dashboard/dashboard.component';
+import { PasswordrstComponent } from '../Layouts/Admin/passwordrst/passwordrst.component';
 import { AccountComponent } from '../Layouts/account/account.component';
 import { ChartsModule } from 'ng2-charts';
 import { authInterceptorProviders } from "./auth-interceptor";
 import { ProfileComponent } from '../Layouts/profile/profile.component';
-import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { BoardComponent } from "../Layouts/Admin/board/board.component";
+import { A11yModule } from '@angular/cdk/a11y';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { ChartsComponent } from '../Layouts/Admin/charts/charts.component';
+import { ContestanttableComponent } from '../Layouts/Admin/contestanttable/contestanttable.component';
+import { StudentdialogComponent } from '../Layouts/Admin/studentdialog/studentdialog.component';
+import { StudenttableComponent } from '../Layouts/Admin/studenttable/studenttable.component';
+
 @NgModule({
   declarations: [
+    StudentdialogComponent,
+    ChartsComponent,
+    StudenttableComponent,
+    ContestanttableComponent,
+    BoardComponent,
     ProfileComponent,
     VoteTimeComponent,
     DashboardComponent,
@@ -77,9 +90,9 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-mat
     SidebarComponent
   ],
   imports: [
-    NgxMatTimepickerModule,
-    NgxMatTimepickerModule,
-    NgxMatDatetimePickerModule,
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
     ChartsModule,
     CommonModule,
     FormsModule,
@@ -121,6 +134,11 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-mat
     HttpClientModule
   ],
   exports: [
+    StudentdialogComponent,
+    ChartsComponent,
+    StudenttableComponent,
+    ContestanttableComponent,
+    BoardComponent,
     ProfileComponent,
     VoteTimeComponent,
     DashboardComponent,
@@ -140,7 +158,6 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-mat
     CastComponent
   ],
   providers: [
-    NgxMatDatetimePickerModule,
     CookieService,
     authInterceptorProviders,
   ]

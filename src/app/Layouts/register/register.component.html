@@ -1,12 +1,12 @@
 <div fxLayoutAlign="center"  class="main">
     <mat-card fxFlex="50">
-        <mat-toolbar style="background-color: green;justify-content: center">STUDENT REGISTRATION</mat-toolbar>
-        <form #f="ngForm" (ngSubmit)="saveStudent()" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+        <mat-toolbar style="justify-content: center">STUDENT REGISTRATION</mat-toolbar>
+        <form #f="ngForm" (ngSubmit)="f.form.valid && saveStudent()" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
         <div class="example-container">
             <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
           <mat-form-field appearance="fill" class="width-100 ml-1" >
             <mat-label>First Name</mat-label>
-            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" [formControl]="lnameFormControl"/>
+            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" [formControl]="lnameFormControl" required/>
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Name Required
             </mat-error>
@@ -14,7 +14,7 @@
       
           <mat-form-field appearance="fill" class="width-100" >
             <mat-label>Surname</mat-label>
-            <input matInput type="text" name="lastname" [(ngModel)]="student.lastname" [formControl]="nameFormControl"/>
+            <input required matInput type="text" name="lastname" [(ngModel)]="student.lastname" [formControl]="nameFormControl"/>
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Name Required
             </mat-error>
@@ -22,7 +22,7 @@
           <br>
           <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com"
+            <input required type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com"
               [(ngModel)]="student.email" class="width-100"/>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
@@ -34,7 +34,7 @@
           <br>
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Enter password</mat-label>
-            <input name="password"  [formControl]="passwordFormControl" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
+            <input required name="password"  [formControl]="passwordFormControl" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
             <mat-error *ngIf="passwordFormControl.errors?.minlength">
               Atleast 5 chatacters
              </mat-error>
@@ -47,7 +47,7 @@
           <mat-form-field appearance="fill" class="width-100 ml-1">
             <mat-label>Faculty</mat-label>
             <mat-select [(ngModel)]="student.faculty" name="faculty">
-              <mat-option *ngFor="let faculty of Faculties" [value]="faculty + ' Faculty' " type="text" >{{faculty}}
+              <mat-option required *ngFor="let faculty of Faculties" [formControl]="emailFormControl" [value]="faculty + ' Faculty' " type="text" >{{faculty}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -55,10 +55,11 @@
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Residence</mat-label>
             <mat-select [(ngModel)]="student.residence" name="residence">
-              <mat-option type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">{{residence}}
+              <mat-option required type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">{{residence}}
               </mat-option>
             </mat-select>
           </mat-form-field></div>
+          <h3 *ngIf="submitted" style="color: red;text-align: center;">{{errormsg}}</h3>
           <button mat-raised-button class="width-100 ml-1" style="background-color: green;padding:0" type="submit">Register</button>
         </div>
     </form>

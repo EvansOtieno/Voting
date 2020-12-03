@@ -44,11 +44,17 @@ passwordFormControl = new FormControl('', [
  
           this.isloggedin=true;
           this.isloginfailed=false;
-          
-          this.location.back();
+          console.log(data);
+          if (data.user.role=='Admin'){
+           
+            this.router.navigateByUrl("/admin");
+          }else{
+            this.location.back();
+          }
+         
         },
         err =>{
-          this.errormsg=err.error.message;
+          this.errormsg=err;
           console.log(this.errormsg);
           this.isloginfailed=true;
         }

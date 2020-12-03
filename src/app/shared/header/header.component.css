@@ -11,3 +11,12 @@
     left: 0;
     right: 0;
 }
+
+mat-toolbar{
+    background-color: rgb(255, 193, 78);
+    justify-content: center;
+   height:40px;
+  }
+  mat-sidenav-content{
+    background: linear-gradient(225deg, rgba(255,193,78,1) 0%, rgba(30,253,29,1) 50%, rgba(252,176,69,1) 100%);
+  }

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-charts',
+  templateUrl: './charts.component.html',
+  styleUrls: ['./charts.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class ChartsComponent implements OnInit {
+  ngOnInit(): void {
+  }
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -29,9 +31,6 @@ export class DashboardComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+ 
+ 
 }

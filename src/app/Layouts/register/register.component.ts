@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   errormsg='';
   issuccessfull=false;
   issignupfailed=false;
+  submitted=false;
   constructor(private authservice:AuthenticationService,private studentservice: StudentService, private router:Router) { }
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -39,10 +40,12 @@ export class RegisterComponent implements OnInit {
       data =>{
         this.issuccessfull=true;
         this.issignupfailed=false;
+        this.submitted=false; 
         this.router.navigateByUrl("/home");
       },
       err =>{
-        this.errormsg=err.error.message;
+        this.submitted=true;
+        this.errormsg=err;
         this.issignupfailed=false;
       }
     )

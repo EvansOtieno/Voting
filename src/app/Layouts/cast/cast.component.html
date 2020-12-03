@@ -1,5 +1,4 @@
-
-<div>
+<div  class="body">
     <mat-toolbar>Choice Preview</mat-toolbar>
     <table #table mat-table [dataSource]="contestants" class="mat-elevation-z8">
 
@@ -29,7 +28,7 @@
 
         <ng-container matColumnDef="Review">
             <th mat-header-cell *matHeaderCellDef> Review </th>
-            <td mat-cell *matCellDef="let element"><div *ngIf="element"> <a (click)="openDialog(element?.position)">Change</a></div> </td>
+            <td mat-cell *matCellDef="let element"><div *ngIf="element"> <a class="anchor" (click)="openDialog(element?.position)">Change</a></div> </td>
             <td mat-footer-cell *matFooterCellDef><button mat-raised-button color="primary" (click)="cast(contestants)">Cast</button></td>
           </ng-container>
       

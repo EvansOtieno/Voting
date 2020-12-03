@@ -1,0 +1,15 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened style="text-align: center">
+        <h1 style="text-align: center;">ADMIN</h1>
+        <br>
+        <a mat-button routerLink="/admin/board">Board</a><br>
+        <a mat-button routerLink="/admin/regcont">Register Contestant</a><br>
+        <a mat-button routerLink="/admin/time">Set Voting Schedule</a><br>
+        <a mat-button (click)="reset">Reset Database</a><br>
+    </mat-drawer>
+    <mat-drawer-content >
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+    
