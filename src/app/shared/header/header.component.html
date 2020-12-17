@@ -14,7 +14,6 @@
         <a mat-button routerLink="home">Home</a>
         <a mat-button routerLink="about">About</a>
         <a *ngIf="!!!tokenstorage.getToken()" mat-button routerLink="register">Register</a>
-        <a mat-button routerLink="regcont">RegCont</a>
         <a *ngIf="!!!tokenstorage.getToken()" mat-button routerLink="login">
           <mat-icon>login</mat-icon>
           <span>Login</span>
@@ -48,7 +47,6 @@
           <mat-icon>login</mat-icon>
           <span>Login</span>
         </a>
-        <a mat-list-item routerLink="regcont">RegCont</a>
         <a *ngIf="!!tokenstorage.getToken()" mat-list-item [matMenuTriggerFor]="menu">
           <mat-icon>account_circle</mat-icon>
         </a>
@@ -60,3 +58,5 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+

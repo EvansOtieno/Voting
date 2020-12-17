@@ -8,4 +8,5 @@ export class Ballot {
     academics: Contestant;
     halls: Contestant;
     faculty: Contestant;
+    voter:number;
 }

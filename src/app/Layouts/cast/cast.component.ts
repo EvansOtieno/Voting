@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { BallotService } from 'src/app/Services/ballot.service';
 import { Ballot } from 'src/app/Models/ballot';
 import { MatTable } from '@angular/material/table';
+import { TokenStorageService } from 'src/app/Services/token-storage.service';
 
 @Component({
   selector: 'app-cast',
@@ -19,7 +20,7 @@ export class CastComponent implements OnInit {
   contestants: Contestant[] = [];
   cont: Contestant = new Contestant();
   ballot: Ballot = new Ballot();
-  constructor(private ballotservice: BallotService, private _location: Location, public dialog: MatDialog, private cookies: CookieService, private router: Router) { }
+  constructor(private ballotservice: BallotService, private _location: Location, public dialog: MatDialog, private token: TokenStorageService, private router: Router) { }
   displayedColumns: string[] = ['position', 'Photo', 'Name', 'Review'];
   footercolumn: string = 'button';
   ngOnInit(): void { 
@@ -50,7 +51,8 @@ export class CastComponent implements OnInit {
     this.ballot.academics=conts[3];
     this.ballot.faculty=conts[4];
     this.ballot.halls=conts[5];
-
+    this.ballot.voter=this.token.getUser().id;
+    
     this.ballotservice.updatevotes(this.ballot).subscribe(
       data => {
         this.router.navigateByUrl("/results");

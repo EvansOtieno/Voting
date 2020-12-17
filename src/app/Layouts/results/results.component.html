@@ -1,27 +1,36 @@
 <div>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<div *ngIf="!isvisible" fxLayout="row" fxLayoutAlign="center center">
+ 
+<div *ngIf="!isvisible">
+  <h2 style="text-align: center;font-family: 'Times New Roman', Times, serif;">COUNTDOWN TO RESULTS</h2> 
+  <div  fxLayout="row" fxLayoutAlign="center center">
     <div class="time">
-        <button mat-fab style="background-color: green;" >
+        <button mat-fab  >
           <p>{{days}}</p>
         </button>
       </div>
       <div class="time">
-        <button mat-fab style="background-color: green;" >
+        <button mat-fab >
           <p>{{hours}}</p>
         </button>
       </div>
       <div class="time">
-        <button mat-fab style="background-color: green;" >
+        <button mat-fab >
           <p>{{minutes}}</p>
         </button>
       </div>
       <div class="time">
-        <button mat-fab style="background-color: green;" >
+        <button mat-fab  >
           <p>{{seconds}}</p>
         </button>
       </div>
+    </div>
+      <div style="text-align: center">
+        <h3 style="font-family: 'Times New Roman', Times, serif;">MEANWHILE DROP DEAD WITH THESE CHUCKNORRIS JOKES</h3>
+        <h4 > {{joke.value}}</h4>
+      </div>
 </div>
+
 <div *ngIf="isvisible">
   <div>
   
@@ -87,6 +96,37 @@
           <td>{{cont.name}}</td>
           <td>{{cont.votes}}</td>
         </tr>
+        
+        
+
+          <tr  *ngIf="isloggedin" class="post">
+            <td></td>
+            <td></td>
+            <td><b>{{user.faculty | uppercase}}</b></td>
+            <td></td>
+          </tr>
+
+          <tr *ngFor="let cont of facultys;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+            <td>{{cont.name}}</td>
+            <td>{{cont.votes}}</td>
+          </tr>
+
+          <tr  *ngIf="isloggedin" class="post">
+            <td></td>
+            <td></td>
+            <td><b>{{user.residence | uppercase}}</b></td>
+            <td></td>
+          </tr>
+          
+          <tr *ngFor="let cont of halls;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><img [src]="cont?.base64image" [alt]="cont?.name"></td>
+            <td>{{cont.name}}</td>
+            <td>{{cont.votes}}</td>
+          </tr>
+        
         
       </tbody>
     </table>

@@ -63,7 +63,7 @@ import { ChartsComponent } from '../Layouts/Admin/charts/charts.component';
 import { ContestanttableComponent } from '../Layouts/Admin/contestanttable/contestanttable.component';
 import { StudentdialogComponent } from '../Layouts/Admin/studentdialog/studentdialog.component';
 import { StudenttableComponent } from '../Layouts/Admin/studenttable/studenttable.component';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     StudentdialogComponent,
@@ -90,6 +90,7 @@ import { StudenttableComponent } from '../Layouts/Admin/studenttable/studenttabl
     SidebarComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     A11yModule,
     CdkStepperModule,
     CdkTableModule,
@@ -134,6 +135,7 @@ import { StudenttableComponent } from '../Layouts/Admin/studenttable/studenttabl
     HttpClientModule
   ],
   exports: [
+    ToastrModule,
     StudentdialogComponent,
     ChartsComponent,
     StudenttableComponent,

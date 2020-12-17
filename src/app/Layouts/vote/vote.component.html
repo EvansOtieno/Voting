@@ -2,7 +2,7 @@
     <h2 style="text-align: center;font-family: 'Times New Roman', Times, serif;">VOTE FOR YOUR TEAM</h2>
     <h3 *ngIf="errormsg" style="color: red;text-align: center;">Error Loading Data!!</h3>
     <mat-toolbar>Chair</mat-toolbar>
-    <div style="margin-top:10px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
+    <div  fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let chair of chairs"  >
         <mat-radio-group [(ngModel)]="contestantss[0]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" >
@@ -68,7 +68,7 @@
         <mat-radio-group [(ngModel)]="contestantss[5]">
         <mat-card fxLayout="row" fxLayoutAlign="space-between" *ngIf="hall.position==user.residence" >
             <img [src]="hall.base64image" [alt]="hall.name">
-            <p style="margin-top: 40px;padding: 5px">{{chair.name}}</p>
+            <p style="margin-top: 40px;padding: 5px">{{hall.name}}</p>
             <mat-radio-button style="margin-top: 40px;padding: 5px;" name="halls" [value]="hall"></mat-radio-button>
         </mat-card> </mat-radio-group>
     </div>

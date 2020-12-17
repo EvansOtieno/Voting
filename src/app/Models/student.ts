@@ -7,4 +7,5 @@ export class Student {
     firstname: string;
     lastname: string;
     residence: string;
+    phoneno: string;
 }

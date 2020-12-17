@@ -1,13 +1,23 @@
 <div fxLayoutAlign="center" class="main">
  
-  <mat-card fxFlex="30">
+  <mat-card fxFlex="50">
     <mat-toolbar >Set Voting Time</mat-toolbar>
-    <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" >
+    <form #f="ngForm" (ngSubmit)="f.form.valid && setTime()" fxLayoutAlign="stretch" fxLayout="column" class="login-form" >
       <label for="st">Choose Voting Start Time:</label>
-      <input type="datetime-local" id="st" required  [formControl]="startFormControl"  [(ngModel)]="starttime" min={{mindate}}/>
+      <input name="starttime" type="datetime-local" id="st" required  #starttime='ngModel'  [(ngModel)]="time.starttime" min={{mindate}}/>
+      <div *ngIf="f.submitted && starttime.invalid">
+        <mat-error *ngIf="starttime.errors.required">
+          DateTime Required
+        </mat-error>
+      </div>
       <br>
       <label for="sp">Choose Voting Stop Time:</label>
-      <input type="datetime-local" id="sp" required [formControl]="stopFormControl"  [(ngModel)]="stoptime" min={{mindate}}/>
+      <input name="stoptime" type="datetime-local" id="sp" required #stoptime='ngModel'  [(ngModel)]="time.stoptime" min={{mindate}}/>
+      <div *ngIf="f.submitted && stoptime.invalid">
+        <mat-error *ngIf="stoptime.errors.required">
+          DateTime Required
+        </mat-error>
+      </div>
       <br>
       <button mat-raised-button style="background-color: green;padding:0" type="submit">Set</button>
     </form>

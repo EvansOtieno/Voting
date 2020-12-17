@@ -5,6 +5,8 @@ import { User } from 'src/app/Models/user';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { TokenStorageService } from 'src/app/Services/token-storage.service';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +29,7 @@ passwordFormControl = new FormControl('', [
   Validators.minLength(5),
 ]);
 
-  constructor(private location: Location,private route: ActivatedRoute, private authservice: AuthenticationService,private tokenstorage:TokenStorageService,private router:Router) { }
+  constructor(private toastr: ToastrService,private location: Location,private route: ActivatedRoute, private authservice: AuthenticationService,private tokenstorage:TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
     this.isloggedin=!!this.tokenstorage.getToken();
@@ -44,12 +46,18 @@ passwordFormControl = new FormControl('', [
  
           this.isloggedin=true;
           this.isloginfailed=false;
-          console.log(data);
+          this.toastr.success("Login Sucess", "Login" ,{
+            timeOut :  3000,
+            positionClass : 'toast-center-center'
+          })
           if (data.user.role=='Admin'){
-           
+            console.log("Admin")
             this.router.navigateByUrl("/admin");
-          }else{
-            this.location.back();
+          }else if(data.user.voted==true && data.user.role!='Admin'){
+            this.router.navigateByUrl("/results");
+          }
+          else { 
+            this.location.back(); 
           }
          
         },

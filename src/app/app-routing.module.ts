@@ -26,7 +26,7 @@ const routes: Routes = [
   {path : 'login', component : LoginComponent},
   {path : 'register', component : RegisterComponent},
   {path : 'about', component : AboutComponent},
-  {path : 'confirm', component : CastComponent},
+  {path : 'confirm', component : CastComponent,canActivate: [AuthGuard] },
   {path : 'results', component : ResultsComponent},
   {path : '', redirectTo: '/home', pathMatch: 'full'},
 ];

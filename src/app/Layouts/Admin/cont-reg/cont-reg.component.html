@@ -4,16 +4,29 @@
     <div fxLayoutAlign="stretch" fxLayout="column" id class="login-form">
       <div class="example-container">
         <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-          <mat-form-field appearance="fill" class="width-100 ml-1">
-            <mat-label>Email</mat-label>
-            <input id="findemail" matInput placeholder="Ex. pat@example.com">
-          </mat-form-field>
-          <button mat-button (click)="findcont()" style="background-color: green;height: 80%;" type="submit">Find
-            Student</button>
+          <form #f="ngForm" (ngSubmit)="f.form.valid && findcont()">
+            <mat-form-field appearance="fill" class="width-100 ml-1">
+              <mat-label>Email</mat-label>
+              <input name="email" type="email" matInput placeholder="Ex. pat@example.com" [(ngModel)]="searchemail" #email="ngModel"
+                email required />
+              <div *ngIf="f.submitted && email.invalid">
+                <mat-error *ngIf="email.errors.required">
+                  Email Required
+                </mat-error>
+                <mat-error *ngIf="email.errors.email">
+                  Enter Valid Email
+                </mat-error>
+              </div>
+            </mat-form-field>
+            <button mat-button style="background-color: green;" type="submit">Find
+              Student</button>
+
+         
+          </form>
         </div>
         <br>
         <mat-divider></mat-divider>
-        <form #f="ngForm" (ngSubmit)="savecont(f)">
+        <form #f="ngForm" (ngSubmit)="savecont(f)" *ngIf="visible">
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Names</mat-label>
             <input matInput disabled placeholder="John Doe" [value]="student.firstname+ ' ' +student.lastname">

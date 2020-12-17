@@ -7,4 +7,6 @@ export class User {
     lastname:string;
     residence:string;
     faculty:string;
+    voted:boolean;
+    phoneno:string;
 }

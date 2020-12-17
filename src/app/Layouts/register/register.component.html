@@ -1,68 +1,113 @@
-<div fxLayoutAlign="center"  class="main">
-    <mat-card fxFlex="50">
-        <mat-toolbar style="justify-content: center">STUDENT REGISTRATION</mat-toolbar>
-        <form #f="ngForm" (ngSubmit)="f.form.valid && saveStudent()" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
-        <div class="example-container">
-            <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
-          <mat-form-field appearance="fill" class="width-100 ml-1" >
+<div fxLayoutAlign="center" class="main">
+  <mat-card fxFlex="50">
+    <mat-toolbar style="justify-content: center">STUDENT REGISTRATION</mat-toolbar>
+    <form #f="ngForm" (ngSubmit)="f.form.valid && saveStudent()" fxLayoutAlign="stretch" fxLayout="column"
+      class="login-form" novalidate>
+      <div class="example-container">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+          <mat-form-field appearance="fill" class="width-100 ml-1">
             <mat-label>First Name</mat-label>
-            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" [formControl]="lnameFormControl" required/>
-            <mat-error *ngIf="nameFormControl.hasError('required')">
-              Name Required
-            </mat-error>
+            <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" minlength="3" required
+              #firstname="ngModel" />
+            <div *ngIf="f.submitted && firstname.invalid">
+              <mat-error *ngIf="firstname.errors.required">
+                Name Required
+              </mat-error>
+              <mat-error *ngIf="firstname.errors.minlength">
+                Atleast 3 characters
+              </mat-error>
+            </div>
           </mat-form-field>
-      
-          <mat-form-field appearance="fill" class="width-100" >
-            <mat-label>Surname</mat-label>
-            <input required matInput type="text" name="lastname" [(ngModel)]="student.lastname" [formControl]="nameFormControl"/>
-            <mat-error *ngIf="nameFormControl.hasError('required')">
-              Name Required
-            </mat-error>
-          </mat-form-field></div>
-          <br>
-          <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input required type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com"
-              [(ngModel)]="student.email" class="width-100"/>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <br>
+
           <mat-form-field appearance="fill" class="width-100">
-            <mat-label>Enter password</mat-label>
-            <input required name="password"  [formControl]="passwordFormControl" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'"/>
-            <mat-error *ngIf="passwordFormControl.errors?.minlength">
-              Atleast 5 chatacters
-             </mat-error>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            <mat-label>Surname</mat-label>
+            <input required matInput type="text" name="lastname" [(ngModel)]="student.lastname" minlength="3"
+              #lastname="ngModel" />
+            <div *ngIf="f.submitted && lastname.invalid">
+              <mat-error *ngIf="lastname.errors.required">
+                Name Required
+              </mat-error>
+              <mat-error *ngIf="lastname.errors.minlength">
+                Atleast 3 characters
+              </mat-error>
+            </div>
           </mat-form-field>
-          <br><br>
-          <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column">
+        </div>
+        <br>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+          <mat-form-field appearance="fill" class="width-100 ml-1">
+            <mat-label>Email</mat-label>
+            <input name="email" type="email" matInput placeholder="Ex. pat@example.com" [(ngModel)]="student.email" #email="ngModel"
+              email required />
+            <div *ngIf="f.submitted && email.invalid">
+              <mat-error *ngIf="email.errors.required">
+                Email Required
+              </mat-error>
+              <mat-error *ngIf="email.errors.email">
+                Enter Valid Email
+              </mat-error>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Phone</mat-label>
+            <input matInput type="text" name="phone" [(ngModel)]="student.phoneno" #phone="ngModel"
+              pattern="^(?:254|\+254|0)?(7(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})$"
+              title="Valid Safaricom number" />
+          </mat-form-field>
+        </div>
+        <br>
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Enter password</mat-label>
+          <input required minlength="5" name="password" [(ngModel)]="student.password" matInput [type]="hide ? 'password' : 'text'" #password="ngModel" />
+          <div *ngIf="f.submitted && password.invalid">
+            <mat-error *ngIf="password.errors.required">
+              Password Required
+            </mat-error>
+            <mat-error *ngIf="password.errors.minlength">
+              Atleast 6 characters
+            </mat-error>
+          </div>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br><br>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
           <mat-form-field appearance="fill" class="width-100 ml-1">
             <mat-label>Faculty</mat-label>
-            <mat-select [(ngModel)]="student.faculty" name="faculty">
-              <mat-option required *ngFor="let faculty of Faculties" [formControl]="emailFormControl" [value]="faculty + ' Faculty' " type="text" >{{faculty}}
+            <mat-select [(ngModel)]="student.faculty" name="faculty" required #faculty="ngModel">
+              <mat-option *ngFor="let faculty of Faculties" [value]="faculty + ' Faculty' " type="text">
+                {{faculty}}
               </mat-option>
             </mat-select>
+            <div *ngIf="f.submitted && faculty.invalid">
+              <mat-error *ngIf="faculty.errors.required">
+                Faculty Required
+              </mat-error>
+            </div>
           </mat-form-field>
-      
+
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Residence</mat-label>
-            <mat-select [(ngModel)]="student.residence" name="residence">
-              <mat-option required type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">{{residence}}
+            <mat-select [(ngModel)]="student.residence" name="residence" required #residence="ngModel">
+              <mat-option  type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">
+                {{residence}}
               </mat-option>
             </mat-select>
-          </mat-form-field></div>
-          <h3 *ngIf="submitted" style="color: red;text-align: center;">{{errormsg}}</h3>
-          <button mat-raised-button class="width-100 ml-1" style="background-color: green;padding:0" type="submit">Register</button>
+            <div *ngIf="f.submitted && residence.invalid">
+              <mat-error *ngIf="residence.errors.required">
+                Residence Required
+              </mat-error>
+            </div>
+          </mat-form-field>
         </div>
+        <h3 *ngIf="f.submitted && issignupfailed" style="color: red;text-align: center;">{{errormsg}}</h3>
+        <button mat-raised-button class="width-100 ml-1" style="background-color: green;padding:0"
+          type="submit">Register</button>
+      </div>
     </form>
-</mat-card>
+  </mat-card>
 
 </div>
