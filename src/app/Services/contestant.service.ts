@@ -23,4 +23,10 @@ export class ContestantService {
   getresults(): Observable<Contestant[]> {
    return this.httpclient.get<Contestant[]>(this.resultsurl).pipe(map(response => response));
   }
+  deleteContestant(id: number):Observable<string>{
+    return this.httpclient.delete<string>(`${this.contestanturl}/${id}`).pipe(map(response => response));
+  }
+  getContestant(id: number):Observable<Contestant>{
+    return this.httpclient.get<Contestant>(`${this.contestanturl}/${id}`).pipe(map(response => response));
+  }
 }

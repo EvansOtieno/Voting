@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Contestant } from 'src/app/Models/contestant';
 import { ContestantService } from 'src/app/Services/contestant.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-contestanttable',
@@ -12,12 +13,13 @@ import { ContestantService } from 'src/app/Services/contestant.service';
 })
 export class ContestanttableComponent {
   private contestants:Contestant[]=[];
- displayedColumns: string[] = ['email', 'name', 'position', 'edit', 'delete'];
+ displayedColumns: string[] = ['email', 'name', 'position', 'delete'];
   dataSource: MatTableDataSource<Contestant>;
  @ViewChild(MatPaginator) paginator: MatPaginator;
  @ViewChild(MatSort) sort: MatSort;
+ @ViewChild('table') table: MatTable<Element>;
 
-  constructor(private contservice:ContestantService) {
+  constructor(private userservice:UserService,private contservice:ContestantService) {
     
     this.contservice.getcontestants().subscribe(
       data => {
@@ -35,6 +37,16 @@ export class ContestanttableComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  delete(cont:Contestant){
+   
+    this.contservice.deleteContestant(cont.id).subscribe(data=>{
+      console.log(data);
+    })
+    this.userservice.updateStudent(cont.id).subscribe();
+    this.table.renderRows();
+    window.location.reload();
   }
 
 }

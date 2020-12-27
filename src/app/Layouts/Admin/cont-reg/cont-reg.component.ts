@@ -28,8 +28,7 @@ export class ContRegComponent implements OnInit {
       this.student = data, this.visible = true, this.toastr.success(" Student Found", "Search Student", {
         timeOut: 3000,
         positionClass: 'toast-center-center'
-      }),
-      console.log(data)
+      });
     },
     err =>{
      this.visible=false,
@@ -48,12 +47,10 @@ export class ContRegComponent implements OnInit {
     this.contestant.id = this.student.id;
     this.contestant.position = f.controls['position'].value;
     const fd = new FormData();
-    console.log(this.photo);
     fd.append("image", this.photo);
     fd.append("contestant", JSON.stringify(this.contestant));
     this.contestantservice.saveContestant(fd).subscribe(
       data => {
-        console.log('response', data);
         this.router.navigateByUrl("/home");
       }
     )

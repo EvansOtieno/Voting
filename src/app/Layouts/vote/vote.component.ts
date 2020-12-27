@@ -9,6 +9,7 @@ import { User } from 'src/app/Models/user';
 import { ContestantService } from 'src/app/Services/contestant.service';
 import { StudentService } from 'src/app/Services/student.service';
 import { TokenStorageService } from 'src/app/Services/token-storage.service';
+import { VoteTimeService } from 'src/app/Services/vote-time.service';
 
 @Component({
   selector: 'app-vote',
@@ -16,7 +17,7 @@ import { TokenStorageService } from 'src/app/Services/token-storage.service';
   styleUrls: ['./vote.component.css']
 })
 export class VoteComponent implements OnInit {
-  errormsg=false;
+  errormsg = false;
   contestants: Contestant[] = [];
   contestantss: Contestant[] = [];
   contestant: Contestant;
@@ -32,22 +33,24 @@ export class VoteComponent implements OnInit {
   academi: Contestant;
   hal: Contestant;
   facult: Contestant;
-  private student: Student = new Student();
+  student: Student = new Student();
   myStorage = window.localStorage;
-  isloggedin=false;
-  user:User=new User();
-  constructor(private tokenstorage:TokenStorageService,private cookie: CookieService, private studentservice: StudentService, private contestantservice: ContestantService, private router: Router) { }
+  isloggedin = false;
+  user: User = new User();
+  time: any;
+  constructor(private timeservice: VoteTimeService, private tokenstorage: TokenStorageService, private cookie: CookieService, private studentservice: StudentService, private contestantservice: ContestantService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isloggedin=!!this.tokenstorage.getToken();
-    
-    if(this.isloggedin){
-      this.user=this.tokenstorage.getUser();
+   
+    this.isloggedin = !!this.tokenstorage.getToken();
+
+    if (this.isloggedin) {
+      this.user = this.tokenstorage.getUser();
     }
 
     this.contestantservice.getcontestants().subscribe(
       data => {
-        this.contestants= data;
+        this.contestants = data;
         this.chairs = this.contestants.filter(x => x.position == 'Chair');
         this.vchairs = this.contestants.filter(x => x.position == 'V.Chair');
         this.secgens = this.contestants.filter(x => x.position == 'SecGen');
@@ -56,10 +59,18 @@ export class VoteComponent implements OnInit {
         this.faculties = this.contestants.filter(x => x.position.endsWith("Faculty"));
         this.myStorage.setItem("cookie", JSON.stringify(this.contestants));
       },
-      err =>{
-        this.errormsg=true;
+      err => {
+        this.errormsg = true;
       }
-    ); 
+    );
+    this.timeservice.getTime().subscribe(data => {
+      this.time=data.stoptime;
+      var noww =new Date().getTime();
+      var dist= new Date(this.time).getTime()-noww;
+      if(dist<0){
+        this.router.navigateByUrl("/results");
+      }
+    });
   }
   confirm() {
     this.myStorage.setItem("cookie1", JSON.stringify(this.contestantss));

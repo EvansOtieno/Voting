@@ -9,6 +9,7 @@ import { BallotService } from 'src/app/Services/ballot.service';
 import { Ballot } from 'src/app/Models/ballot';
 import { MatTable } from '@angular/material/table';
 import { TokenStorageService } from 'src/app/Services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cast',
@@ -20,10 +21,10 @@ export class CastComponent implements OnInit {
   contestants: Contestant[] = [];
   cont: Contestant = new Contestant();
   ballot: Ballot = new Ballot();
-  constructor(private ballotservice: BallotService, private _location: Location, public dialog: MatDialog, private token: TokenStorageService, private router: Router) { }
+  constructor(private toastr: ToastrService,private ballotservice: BallotService, private _location: Location, public dialog: MatDialog, private token: TokenStorageService, private router: Router) { }
   displayedColumns: string[] = ['position', 'Photo', 'Name', 'Review'];
   footercolumn: string = 'button';
-  ngOnInit(): void { 
+  ngOnInit(): void {
     var myStorage = window.localStorage;
     this.contestants = JSON.parse(myStorage.getItem('cookie1'));
   }
@@ -43,22 +44,31 @@ export class CastComponent implements OnInit {
   back() {
     this._location.back();
   }
-  cast(conts:Contestant[]) {
+  cast(conts: Contestant[]) {
+    if (!Array.isArray(conts) || !conts.length) {
+      this.toastr.error("Select at least one", "No Candidate Selected" ,{
+        timeOut :  3000,
+        positionClass : 'toast-center-center'
+      });
+    } else {
+      this.ballot.chair = conts[0];
+      this.ballot.vchair = conts[1];
+      this.ballot.secgen = conts[2];
+      this.ballot.academics = conts[3];
+      this.ballot.faculty = conts[4];
+      this.ballot.halls = conts[5];
+      this.ballot.voter = this.token.getUser().id;
 
-    this.ballot.chair=conts[0];
-    this.ballot.vchair=conts[1];
-    this.ballot.secgen=conts[2];
-    this.ballot.academics=conts[3];
-    this.ballot.faculty=conts[4];
-    this.ballot.halls=conts[5];
-    this.ballot.voter=this.token.getUser().id;
-    
-    this.ballotservice.updatevotes(this.ballot).subscribe(
-      data => {
-        this.router.navigateByUrl("/results");
-      }
-    );
-  
+      this.ballotservice.updatevotes(this.ballot).subscribe(
+        data => {
+          this.toastr.info("Thanks for Voting", "Voted" ,{
+            timeOut :  3000,
+            positionClass : 'toast-center-center'
+          });
+          this.router.navigateByUrl("/results");
+        }
+      );
+    }
   }
 }
 

@@ -50,11 +50,9 @@ import { DialogElementsComponent } from '../Layouts/dialog-elements/dialog-eleme
 import { ResultsComponent } from '../Layouts/results/results.component';
 import { VoteTimeComponent } from '../Layouts/vote-time/vote-time.component';
 import { DashboardComponent } from '../Layouts/Admin/dashboard/dashboard.component';
-import { PasswordrstComponent } from '../Layouts/Admin/passwordrst/passwordrst.component';
 import { AccountComponent } from '../Layouts/account/account.component';
 import { ChartsModule } from 'ng2-charts';
 import { authInterceptorProviders } from "./auth-interceptor";
-import { ProfileComponent } from '../Layouts/profile/profile.component';
 import { BoardComponent } from "../Layouts/Admin/board/board.component";
 import { A11yModule } from '@angular/cdk/a11y';
 import { CdkStepperModule } from '@angular/cdk/stepper';
@@ -63,18 +61,18 @@ import { ChartsComponent } from '../Layouts/Admin/charts/charts.component';
 import { ContestanttableComponent } from '../Layouts/Admin/contestanttable/contestanttable.component';
 import { StudentdialogComponent } from '../Layouts/Admin/studentdialog/studentdialog.component';
 import { StudenttableComponent } from '../Layouts/Admin/studenttable/studenttable.component';
+import { ResetDatabaseComponent } from '../Layouts/Admin/reset-database/reset-database.component';
 import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
+    ResetDatabaseComponent,
     StudentdialogComponent,
     ChartsComponent,
     StudenttableComponent,
     ContestanttableComponent,
     BoardComponent,
-    ProfileComponent,
     VoteTimeComponent,
     DashboardComponent,
-    PasswordrstComponent,
     AccountComponent,
     ResultsComponent,
     DialogElementsComponent,
@@ -141,10 +139,8 @@ import { ToastrModule } from 'ngx-toastr';
     StudenttableComponent,
     ContestanttableComponent,
     BoardComponent,
-    ProfileComponent,
     VoteTimeComponent,
     DashboardComponent,
-    PasswordrstComponent,
     AccountComponent,
     ResultsComponent,
     DialogElementsComponent,
@@ -157,7 +153,8 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     RegisterComponent,
     ContRegComponent,
-    CastComponent
+    CastComponent,
+    ResetDatabaseComponent
   ],
   providers: [
     CookieService,

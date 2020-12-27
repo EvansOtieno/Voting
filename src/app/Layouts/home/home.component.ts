@@ -14,9 +14,10 @@ import { VoteTimeService } from 'src/app/Services/vote-time.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   isvisible: boolean = false;
   cdate: any;
+  ddate: any;
   days: String = new String();
   hours: String = new String();
   minutes: String = new String();
@@ -25,20 +26,30 @@ export class HomeComponent {
   user: User = new User();
   time: Time = new Time();
   joke:any;
+  dist:number;
   constructor(private httpclient: HttpClient, private timeservice: VoteTimeService, private token: TokenStorageService, private router: Router) {
     Observable.interval(15000).subscribe(x => {
       this.httpclient.get('https://api.chucknorris.io/jokes/random').pipe(map(response => response)).subscribe(data => { this.joke = data });
     });
   }
   ngOnInit(): void {
-    if (!!this.token.getToken() && this.token.getUser().voted) {
-      this.router.navigateByUrl("/results");
-    }
+    
     this.httpclient.get('https://api.chucknorris.io/jokes/random').pipe(map(response => response)).subscribe(data => { this.joke = data });
     this.timeservice.getTime().subscribe(data => {
-      this.time = data;
       this.cdate = new Date(data.starttime).getTime();
-    })
+      this.ddate=new Date(data.stoptime).getTime();
+      var noww =new Date().getTime();
+      this.dist=this.ddate-noww;
+      if(this.dist<0){
+        this.router.navigateByUrl("/results");
+      }
+    });
+    if (!!this.token.getToken() && this.token.getUser().voted) {
+      this.router.navigateByUrl("/results");
+    };
+    if (!!this.token.getToken() && this.token.getUser().role == 'Admin') {
+      this.router.navigateByUrl("/admin");
+    } 
     this.tokens = this.token.getToken();
 
   }
@@ -54,9 +65,13 @@ export class HomeComponent {
       this.isvisible = true;
       if (!!this.token.getToken() && this.token.getUser().role == 'Admin') {
         this.router.navigateByUrl("/admin");
-      } else {
-        this.router.navigateByUrl("/vote");
       }
+      if(this.dist<0){
+        this.router.navigateByUrl("/results");
+      }
+      else{
+        this.router.navigateByUrl("/vote");}
+      
     }
   });
 }

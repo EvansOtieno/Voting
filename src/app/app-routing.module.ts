@@ -13,8 +13,12 @@ import { ResultsComponent } from './Layouts/results/results.component';
 import { VoteTimeComponent } from './Layouts/vote-time/vote-time.component';
 import { VoteComponent } from './Layouts/vote/vote.component';
 import { AuthGuard } from './Services/auth.guard';
+import { NotFoundComponent } from './Layouts/not-found/not-found.component';
+import { AccountComponent } from './Layouts/account/account.component';
+import { ResetDatabaseComponent } from './Layouts/Admin/reset-database/reset-database.component';
 
 const routes: Routes = [
+  {path : '', pathMatch: 'full', redirectTo: 'home'},
   {path : 'home', component : HomeComponent},
   {path : 'vote', component : VoteComponent},
   {path : 'admin', component : DashboardComponent,canActivate:[AuthGuard],children:[
@@ -22,13 +26,16 @@ const routes: Routes = [
     {path : 'time', component : VoteTimeComponent},
     {path : '',redirectTo: '/admin/board', pathMatch: 'full'},
     {path : 'regcont', component : ContRegComponent},
+    {path : 'reset', component : ResetDatabaseComponent},
   ]},
   {path : 'login', component : LoginComponent},
+  {path : 'profile', component : AccountComponent},
   {path : 'register', component : RegisterComponent},
   {path : 'about', component : AboutComponent},
   {path : 'confirm', component : CastComponent,canActivate: [AuthGuard] },
   {path : 'results', component : ResultsComponent},
-  {path : '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({

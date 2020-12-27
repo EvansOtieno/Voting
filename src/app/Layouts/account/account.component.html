@@ -1,1 +1,60 @@
-<p>account works!</p>
+<div class="container rounded bg-white mt-5 mb-5">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                    *ngIf="user2.base64image !=null" class="rounded-circle mt-5" [src]="user2.base64image"
+                    [alt]="user.firstname"><img *ngIf="user2.base64image == null || photo "
+                    style="height:230px;width:220px" class="rounded-circle mt-5" src="/assets/avatar.png"
+                    [alt]="user.firstname"><span class="text-black-50">{{user.email}}</span><span> </span></div>
+        </div>
+        <form class="col-md-9 " #f="ngForm" (ngSubmit)="f.form.valid && update()">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">My Profile</h4>
+                </div>
+                <div class="row mt-2">
+                    <div *ngIf="user.firstname !=null" class="col-md-6"><label class="labels">Name</label><input
+                            disabled type="text" class="form-control" placeholder="first name" [value]="user.firstname"
+                            [(ngModel)]="user.firstname" #firstname="ngModel"></div>
+                    <div *ngIf="user.lastname !=null" class="col-md-6"><label class="labels">Surname</label><input
+                            disabled name="lastname" type="text" class="form-control" [(ngModel)]="user.lastname"
+                            #lastname="ngModel" placeholder="surname" [value]="user.lastname"></div>
+                </div>
+                <div class="row mt-3">
+                    <div *ngIf="user.faculty !=null" class="col-md-6"><label class="labels">Faculty</label><input
+                            disabled type="text" class="form-control" placeholder="country" [value]="user.faculty"
+                            [(ngModel)]="user.faculty" #faculty="ngModel"></div>
+                    <div *ngIf="user.residence !=null" class="col-md-6"><label class="labels">Residence</label><input
+                            disabled type="text" class="form-control" [value]="user.residence"
+                            [(ngModel)]="user.residence" #residence="ngModel"></div>
+                </div>
+                <div class="row mt-3">
+                    <div *ngIf="user.phoneno !=null" class="col-md-12"><label class="labels">PhoneNumber</label><input
+                            disabled type="text" class="form-control" placeholder="enter phone number"
+                            [value]="user.phoneno" [(ngModel)]="user.phoneno" #phoneno="ngModel"></div>
+                    <div *ngIf="user2.position !=null" class="col-md-12"><label class="labels">Position</label><input
+                            disabled type="text" class="form-control" [value]="user2.position"
+                            [(ngModel)]="user.position" #position="ngModel"></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input required minlength="5"
+                            type="password" name="password" class="form-control" placeholder="new password" [(ngModel)]="user.password"
+                            #password="ngModel"></div>
+                    <div *ngIf="f.submitted && password.invalid">
+                        <mat-error *ngIf="password.errors.required">
+                            Password Required
+                        </mat-error>
+                        <mat-error *ngIf="password.errors.minlength">
+                            Atleast 6 characters
+                        </mat-error>
+                    </div>
+
+                </div>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Change
+                        Password</button></div>
+            </div>
+        </form>
+
+    </div>
+</div>

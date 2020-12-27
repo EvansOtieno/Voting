@@ -1,1 +1,68 @@
-<p>studentdialog works!</p>
+<div fxLayoutAlign="center" class="main">
+  <mat-card>
+
+    <div class="example-container">
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+        <mat-form-field appearance="fill" class="width-100 ml-1">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" name="firstname" [(ngModel)]="student.firstname" minlength="3" required
+            #firstname="ngModel" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Surname</mat-label>
+          <input required matInput type="text" name="lastname" [(ngModel)]="student.lastname" minlength="3"
+            #lastname="ngModel" />
+        </mat-form-field>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+        <mat-form-field appearance="fill" class="width-100 ml-1">
+          <mat-label>Email</mat-label>
+          <input disabled name="email" type="email" matInput placeholder="Ex. pat@example.com"
+            [(ngModel)]="student.email" #email="ngModel" email required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Phone</mat-label>
+          <input matInput type="text" name="phone" [(ngModel)]="student.phoneno" #phone="ngModel"
+            pattern="^(?:254|\+254|0)?(7(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})$"
+            title="Valid Safaricom number" />
+        </mat-form-field>
+      </div>
+      <br>
+      <mat-form-field appearance="fill" class="width-100">
+        <mat-label>Enter password</mat-label>
+        <input required minlength="5" name="password" [(ngModel)]="student.password" matInput
+          [type]="hide ? 'password' : 'text'" #password="ngModel" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br><br>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+        <mat-form-field appearance="fill" class="width-100 ml-1">
+          <mat-label>Faculty</mat-label>
+          <mat-select [(ngModel)]="student.faculty" name="faculty" required #faculty="ngModel">
+            <mat-option *ngFor="let faculty of Faculties" [value]="faculty + ' Faculty' " type="text">
+              {{faculty}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Residence</mat-label>
+          <mat-select [(ngModel)]="student.residence" name="residence" required #residence="ngModel">
+            <mat-option type="text" *ngFor="let residence of Halls" [value]="residence + ' Halls' ">
+              {{residence}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button [mat-dialog-close]="student" mat-raised-button class="width-100 ml-1"
+        style="background-color: green;padding:0" type="submit">Save</button>
+    </div>
+  </mat-card>
+
+</div>

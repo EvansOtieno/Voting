@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/Models/student';
 import { StudentService } from 'src/app/Services/student.service';
+import { StudentdialogComponent } from '../studentdialog/studentdialog.component';
 
 @Component({
   selector: 'app-studenttable',
@@ -14,11 +16,12 @@ export class StudenttableComponent {
   private students: Student[] = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('table') table: MatTable<Element>;
 
   displayedColumns: string[] = ['email', 'name', 'faculty', 'residence', 'edit', 'delete'];
   dataSource: MatTableDataSource<Student>;
 
-  constructor(private studentservice: StudentService) {
+  constructor( public dialog: MatDialog,private studentservice: StudentService) {
     this.studentservice.getstudents().subscribe(
       data => {
         this.students = data;
@@ -36,4 +39,23 @@ export class StudenttableComponent {
     }
   }
 
+  openDialog(student: Student): void {
+    const dialogRef = this.dialog.open(StudentdialogComponent, {
+      width: '250px',
+      data: { student:student}
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      const index = this.students.findIndex(x => x.email === result.email);
+      this.students[index]=result;
+      this.table.renderRows();
+    });
+  }
+
+  delete(std:Student){
+    this.studentservice.deleteStudent(std.id).subscribe(data=>{
+      console.log(data);
+    });
+    window.location.reload();
+  }
 }

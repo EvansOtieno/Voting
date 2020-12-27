@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { ChartsModule } from 'ng2-charts';
 import { AuthGuard } from './Services/auth.guard';
+import { NotFoundComponent } from './Layouts/not-found/not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent
    
   ],
   imports: [

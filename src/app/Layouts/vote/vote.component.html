@@ -1,6 +1,7 @@
 <div class="body">
     <h2 style="text-align: center;font-family: 'Times New Roman', Times, serif;">VOTE FOR YOUR TEAM</h2>
     <h3 *ngIf="errormsg" style="color: red;text-align: center;">Error Loading Data!!</h3>
+    <h2 style="color: blue;text-align: center;">Remember Voting Ends on:  {{time | date:'medium'}}  </h2>
     <mat-toolbar>Chair</mat-toolbar>
     <div  fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" >
     <div class="cards" *ngFor="let chair of chairs"  >

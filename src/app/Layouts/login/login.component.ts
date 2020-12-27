@@ -43,15 +43,13 @@ passwordFormControl = new FormControl('', [
         data=>{
           this.tokenstorage.saveToken(data.jwt);
           this.tokenstorage.saveUser(data.user);
- 
           this.isloggedin=true;
           this.isloginfailed=false;
-          this.toastr.success("Login Sucess", "Login" ,{
+          this.toastr.info("Login Sucess", "Login" ,{
             timeOut :  3000,
             positionClass : 'toast-center-center'
           })
           if (data.user.role=='Admin'){
-            console.log("Admin")
             this.router.navigateByUrl("/admin");
           }else if(data.user.voted==true && data.user.role!='Admin'){
             this.router.navigateByUrl("/results");
@@ -63,7 +61,6 @@ passwordFormControl = new FormControl('', [
         },
         err =>{
           this.errormsg=err;
-          console.log(this.errormsg);
           this.isloginfailed=true;
         }
       )

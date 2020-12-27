@@ -8,4 +8,5 @@ export class Student {
     lastname: string;
     residence: string;
     phoneno: string;
+    voted:boolean;
 }
